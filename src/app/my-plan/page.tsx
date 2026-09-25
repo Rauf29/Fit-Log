@@ -1,7 +1,19 @@
+"use client";
+import EmptyCard from "@/components/shared/EmptyCard";
+import Save from "@/components/shared/Save";
+import TodayPlan from "@/components/shared/TodayPlan";
+import { ExercisesContext } from "@/context/ExercisesContext";
+import { useContext, useState } from "react";
+
 
 const myPlan = () => {
+    const { plan, saved } = useContext(ExercisesContext);
+    const [tabOptions, setTabOptions] = useState("plan");
+
+
+
     return (
-        <main className="container mx-auto px-4 py-10 pt-14 pb-14 sm:px-6 lg:px-8">
+        <section className="container mx-auto px-4 py-10 pt-14 pb-14 sm:px-6 lg:px-8">
 
 
             <div>
@@ -23,7 +35,7 @@ const myPlan = () => {
                     </p>
 
                     <p className="mt-1 text-[48px] font-bold leading-none text-primary">
-                        2
+                        {(tabOptions === "plan") ? plan.length : saved.length}
                     </p>
                 </div>
 
@@ -33,7 +45,7 @@ const myPlan = () => {
                     </p>
 
                     <p className="mt-1 text-[48px] font-bold leading-none text-white">
-                        23
+                        {(tabOptions === "plan") ? plan.reduce((acc, curr) => acc + curr.duration, 0) : saved.reduce((acc, curr) => acc + curr.duration, 0)}
                     </p>
                 </div>
 
@@ -43,7 +55,7 @@ const myPlan = () => {
                     </p>
 
                     <p className="mt-1 text-[48px] font-bold leading-none text-white">
-                        190
+                        {(tabOptions === "plan") ? plan.reduce((acc, curr) => acc + curr.caloriesBurned, 0) : saved.reduce((acc, curr) => acc + curr.caloriesBurned, 0)}
                     </p>
                 </div>
 
@@ -54,11 +66,15 @@ const myPlan = () => {
 
                 <div className="flex rounded-lg border border-[#252a32] bg-[#15181f] p-0.5">
 
-                    <button className="rounded-md bg-[#222630] px-4 py-2 text-[13px] font-semibold text-white">
+                    <button
+                        onClick={() => setTabOptions("plan")}
+                        className={`cursor-pointer px-4 py-2 text-[13px] ${tabOptions === "plan" ? "rounded-md bg-[#222630] text-white font-bold" : "text-text"}`}>
                         Today&apos;s Plan
                     </button>
 
-                    <button className="px-4 py-2 text-[13px] text-secondary">
+                    <button
+                        onClick={() => setTabOptions("saved")}
+                        className={`cursor-pointer px-4 py-2 text-[13px] ${tabOptions === "saved" ? "rounded-md bg-[#222630] text-white font-bold" : "text-text"}`}>
                         Saved
                     </button>
 
@@ -88,7 +104,18 @@ const myPlan = () => {
                 </div>
 
             </div>
-        </main>
+
+
+
+            {tabOptions === "plan" ? (
+                plan.length > 0 ? <TodayPlan /> : <EmptyCard />
+            ) : (
+                saved.length > 0 ? <Save /> : <EmptyCard />
+            )}
+
+
+
+        </section>
     );
 };
 

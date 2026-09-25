@@ -1,76 +1,105 @@
-import HeroImage from "@/assets/banner.png";
+"use client";
+import { ExercisesContext } from "@/context/ExercisesContext";
+import { Exercise } from "@/type/Type";
 import Image from 'next/image';
 import Link from 'next/link';
+import { useContext } from "react";
+import { toast } from "react-toastify";
 
 const TodayPlan = () => {
+
+    const { plan, setPlan } = useContext(ExercisesContext);
+
     return (
+
         <div className="mt-5 space-y-4">
 
-            <div className="rounded-2xl border border-[#252a32] bg-[#15181f] p-3 sm:flex sm:min-h-[104px] sm:items-center sm:justify-between">
+            {plan.map((exercise: Exercise) => (
 
-                <div className="flex items-center gap-4">
+                <div
+                    key={exercise.id}
+                    className="rounded-2xl border border-[#252a32] bg-[#15181f] p-3 sm:flex sm:min-h-[104px] sm:items-center sm:justify-between">
 
-                    <div className="h-[100px] w-[100px] shrink-0 overflow-hidden rounded-lg">
-                        <Image
-                            src={HeroImage}
-                            alt="Russian Twist"
-                            className="h-full w-full object-cover"
-                        />
-                    </div>
+                    <div className="flex items-center gap-4">
 
-                    <div>
+                        <div className="h-[100px] w-[100px] shrink-0 overflow-hidden rounded-lg">
+                            <Image
+                                src={exercise.image}
+                                width={100}
+                                height={100}
+                                alt="Russian Twist"
+                                className="h-full w-full object-cover"
+                            />
+                        </div>
 
-                        <h3 className="text-[18px] font-bold uppercase text-white">
-                            Russian Twist
-                        </h3>
+                        <div>
 
-                        <p className="mt-0.5 text-[15px] text-secondary">
-                            Medicine Ball
-                        </p>
+                            <h3 className="text-[18px] font-bold uppercase text-white">
+                                {exercise.name}
+                            </h3>
 
-                        <div className="mt-1.5 flex items-center gap-3 text-[13px] text-secondary">
+                            <p className="mt-0.5 text-[15px] text-secondary">
+                                {exercise.equipment}
+                            </p>
 
-                            <span className="text-primary">
-                                ◷ 8 min
-                            </span>
+                            <div className="mt-1.5 flex items-center gap-3 text-[13px] text-secondary">
 
-                            <span>
-                                ● 70 kcal
-                            </span>
+                                <span className="text-primary">
+                                    ◷ {exercise.duration} min
+                                </span>
 
-                            <span className="text-primary">
-                                ☆ 4.1
-                            </span>
+                                <span>
+                                    ● {exercise.caloriesBurned} kcal
+                                </span>
+
+                                <span className="text-primary">
+                                    ☆ {exercise.rating}
+                                </span>
+
+                            </div>
 
                         </div>
 
                     </div>
 
+
+                    <div className="mt-3 flex items-center gap-2 sm:mt-0">
+
+                        <Link
+                            href={`/exercise/${exercise.id}`}
+                            className="rounded-full border border-[#343b48] px-4 py-2 text-[13px] text-white"
+                        >
+                            View Details
+                        </Link>
+
+                        <button
+                            onClick={() => {
+                                const updatedPlan = plan.filter((item: Exercise) => item.id !== exercise.id);
+                                setPlan(updatedPlan);
+                                toast.success(`${exercise.name} is done. Good job!`, { autoClose: 2000 });
+                            }}
+                            className="rounded-full bg-primary px-4 py-2 text-[13px] font-bold text-black cursor-pointer">
+                            ✓ Mark as Done
+                        </button>
+
+                        <button
+                            onClick={() => {
+                                const updatedPlan = plan.filter((item: Exercise) => item.id !== exercise.id);
+                                setPlan(updatedPlan);
+                                toast.error(`${exercise.name} removed from your plan`, { autoClose: 2000 });
+                            }}
+                            className="px-2 text-[25px] text-red-600 cursor-pointer">
+                            ×
+                        </button>
+
+                    </div>
+
                 </div>
-
-
-                <div className="mt-3 flex items-center gap-2 sm:mt-0">
-
-                    <Link
-                        href="/workouts/russian-twist"
-                        className="rounded-full border border-[#343b48] px-4 py-2 text-[13px] text-white"
-                    >
-                        View Details
-                    </Link>
-
-                    <button className="rounded-full bg-primary px-4 py-2 text-[13px] font-bold text-black cursor-pointer">
-                        ✓ Mark as Done
-                    </button>
-
-                    <button className="px-2 text-[25px] text-red-600 cursor-pointer">
-                        ×
-                    </button>
-
-                </div>
-
-            </div>
+            ))}
 
         </div>
+
+
     );
 };
 

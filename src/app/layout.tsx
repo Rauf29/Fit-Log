@@ -3,6 +3,7 @@ import Header from "@/components/shared/Header";
 import ExercisesProvider from "@/context/ExercisesContext";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,12 +31,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         <ExercisesProvider>
           <Header />
-          <main className=" flex-1">
-            {children}
-          </main>
+          {children}
           <Footer />
+          <ToastContainer />
         </ExercisesProvider>
-
       </body>
     </html>
   );
