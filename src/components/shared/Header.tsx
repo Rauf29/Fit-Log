@@ -1,6 +1,7 @@
 import Logo from "@/assets/logo.png";
 import Image from "next/image";
 import Link from 'next/link';
+import NavLinks from "./NavLinks";
 
 
 const Header = () => {
@@ -22,19 +23,13 @@ const Header = () => {
 
 
                 <div className="flex justify-center">
-                    <Link
-                        href="/my-plan"
-                        className="flex h-[35px] items-center rounded-full bg-[#182400] px-4 text-[14px] leading-6 text-primary"
-                    >
+                    <NavLinks href="/">
                         Workouts
-                    </Link>
+                    </NavLinks>
 
-                    <Link
-                        href="/my-plan"
-                        className="flex h-[35px] items-center px-4 text-[13px] leading-6 text-text"
-                    >
+                    <NavLinks href="/my-plan">
                         My Plan
-                    </Link>
+                    </NavLinks>
                 </div>
 
 
