@@ -1,6 +1,3 @@
-import EmptyCard from "@/components/shared/EmptyCard";
-import Save from "@/components/shared/Save";
-import TodayPlan from "@/components/shared/TodayPlan";
 
 const myPlan = () => {
     return (
@@ -91,11 +88,6 @@ const myPlan = () => {
                 </div>
 
             </div>
-
-
-            <TodayPlan />
-            <Save />
-            <EmptyCard />
         </main>
     );
 };
