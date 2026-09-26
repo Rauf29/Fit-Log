@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Project Name: FitLog
 
-## Getting Started
+## About The Project
 
-First, run the development server:
+FitLog is a Next.js-based workout logger that helps users browse exercises and build a personalized fitness plan. Users can add exercises to today's plan, save workouts for later, sort and track totals, with data persisted in localStorage.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technology use
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next.js 16 (App Router)
+TypeScript
+Tailwind CSS 4
+React Icons
+React Toastify
+REST API
+localStorage + Context API
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Explore Workouts – Browse exercises with muscle groups, equipment, duration, calories and rating in a responsive card grid.
 
-## Learn More
+2. Exercise Details – Open any exercise in a dynamic details page with description, specs table, and step-by-step instructions.
 
-To learn more about Next.js, take a look at the following resources:
+3. Build Today's Plan – Add any exercise to today's plan with live count and duplicate protection.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Save For Later – Save exercises in a separate list for future workouts with duplicate protection.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Manage With Feedback – Sort by duration, calories or rating, see live totals, mark as done or remove items with instant toast notifications and empty-state messaging.
