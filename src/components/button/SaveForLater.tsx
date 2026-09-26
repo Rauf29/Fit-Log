@@ -11,14 +11,14 @@ interface SaveForLaterProps {
 const SaveForLater = ({ exercise }: SaveForLaterProps) => {
     const { saved, setSaved } = useContext(ExercisesContext);
     const handleSaveForLater = () => {
-        if (!saved.includes(exercise)) {
+        if (!saved.some((item) => item.id === exercise.id)) {
             setSaved([...saved, exercise]);
             toast.success(`${exercise.name} saved for later`, { autoClose: 2000 });
         } else {
             toast.error(`${exercise.name} already saved for later`, { autoClose: 2000 });
         }
     }
-    const isSaved = saved.includes(exercise);
+    const isSaved = saved.some((item) => item.id === exercise.id);
     return (
         <button
             onClick={handleSaveForLater}

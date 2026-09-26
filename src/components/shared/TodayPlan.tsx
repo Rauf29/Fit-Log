@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
-const TodayPlan = () => {
+const TodayPlan = ({ exercises }: { exercises: Exercise[] }) => {
 
     const { plan, setPlan } = useContext(ExercisesContext);
 
@@ -14,7 +14,7 @@ const TodayPlan = () => {
 
         <div className="mt-5 space-y-4">
 
-            {plan.map((exercise: Exercise) => (
+            {exercises.map((exercise: Exercise) => (
 
                 <div
                     key={exercise.id}

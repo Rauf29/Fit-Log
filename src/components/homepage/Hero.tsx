@@ -24,7 +24,7 @@ const Hero = () => {
                         into today&apos;s plan, and watch the week&apos;s work add up.
                     </p>
 
-                    <Link href="/">
+                    <Link href="#exercise">
                         <button
                             className="mt-6 cursor-pointer rounded-md border border-transparent bg-primary px-5 py-2.5 text-[12px] leading-[20px] font-bold uppercase text-black transition-all duration-400 ease-in-out hover:border-primary hover:bg-transparent hover:text-white"
                         >

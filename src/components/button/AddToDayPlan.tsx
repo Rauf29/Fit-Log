@@ -10,7 +10,7 @@ interface AddtoDayPlanProps {
 const AddToDayPlan = ({ exercise }: AddtoDayPlanProps) => {
     const { plan, setPlan } = useContext(ExercisesContext);
     const handleAddToDayPlan = () => {
-        if (!plan.includes(exercise)) {
+        if (!plan.some((item) => item.id === exercise.id)) {
             setPlan([...plan, exercise]);
             toast.success(`${exercise.name} added to your plan`, { autoClose: 2000 });
         } else {
@@ -18,7 +18,7 @@ const AddToDayPlan = ({ exercise }: AddtoDayPlanProps) => {
         }
 
     }
-    const isSetToPlan = plan.includes(exercise);
+    const isSetToPlan = plan.some((item) => item.id === exercise.id);
     return (
         <button
             onClick={handleAddToDayPlan}

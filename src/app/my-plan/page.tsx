@@ -3,14 +3,28 @@ import EmptyCard from "@/components/shared/EmptyCard";
 import Save from "@/components/shared/Save";
 import TodayPlan from "@/components/shared/TodayPlan";
 import { ExercisesContext } from "@/context/ExercisesContext";
+import { Exercise } from "@/type/Type";
 import { useContext, useState } from "react";
 
 
 const myPlan = () => {
-    const { plan, saved } = useContext(ExercisesContext);
+    const { plan, saved, sortBy, setSortBy } = useContext(ExercisesContext);
     const [tabOptions, setTabOptions] = useState("plan");
 
+    const sortExercise = (Exercises: Exercise[]) => {
+        const sortedExercises = [...Exercises];
+        if (sortBy === "duration") {
+            sortedExercises.sort((a, b) => b.duration - a.duration);
+        } else if (sortBy === "calories") {
+            sortedExercises.sort((a, b) => b.caloriesBurned - a.caloriesBurned);
+        } else if (sortBy === "rating") {
+            sortedExercises.sort((a, b) => b.rating - a.rating);
+        }
+        return sortedExercises;
+    }
 
+    const sortedPlan = sortExercise(plan);
+    const sortedSaved = sortExercise(saved);
 
     return (
         <section className="container mx-auto px-4 py-10 pt-14 pb-14 sm:px-6 lg:px-8">
@@ -87,7 +101,10 @@ const myPlan = () => {
                         Sort By
                     </span>
 
-                    <select className="px-3 py-3 cursor-pointer rounded-lg border border-[#252a32] bg-[#15181f] px-3 text-[13px] text-white outline-none">
+                    <select
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}
+                        className="px-3 py-3 cursor-pointer rounded-lg border border-[#252a32] bg-[#15181f] px-3 text-[13px] text-white outline-none">
                         <option value="duration">
                             Duration
                         </option>
@@ -108,9 +125,9 @@ const myPlan = () => {
 
 
             {tabOptions === "plan" ? (
-                plan.length > 0 ? <TodayPlan /> : <EmptyCard />
+                plan.length > 0 ? <TodayPlan exercises={sortedPlan} /> : <EmptyCard />
             ) : (
-                saved.length > 0 ? <Save /> : <EmptyCard />
+                saved.length > 0 ? <Save exercises={sortedSaved} /> : <EmptyCard />
             )}
 
 

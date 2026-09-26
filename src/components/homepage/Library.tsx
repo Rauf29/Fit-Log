@@ -10,7 +10,7 @@ const getExercises = async () => {
 const Library = async () => {
     const exercises = await getExercises();
     return (
-        <section className="container mx-auto px-4 py-5 sm:px-6 lg:px-8">
+        <section className="container mx-auto px-4 py-5 sm:px-6 lg:px-8 " id="exercise">
             <div className="mb-7">
                 <h2 className="text-[36px] font-extrabold uppercase leading-none text-white">
                     The Library

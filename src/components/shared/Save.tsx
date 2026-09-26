@@ -1,3 +1,4 @@
+"use client";
 import { ExercisesContext } from "@/context/ExercisesContext";
 import { Exercise } from "@/type/Type";
 import Image from 'next/image';
@@ -5,12 +6,12 @@ import Link from 'next/link';
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
-const Save = () => {
+const Save = ({ exercises }: { exercises: Exercise[] }) => {
     const { saved, setSaved } = useContext(ExercisesContext);
 
     return (
         <div className="mt-5 space-y-4">
-            {saved.map((exercise: Exercise) => (
+            {exercises.map((exercise: Exercise) => (
 
                 <div
                     key={exercise.id}

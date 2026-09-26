@@ -7,23 +7,30 @@ interface IExercisesContext {
     setPlan: Dispatch<SetStateAction<Exercise[]>>,
     saved: Exercise[],
     setSaved: Dispatch<SetStateAction<Exercise[]>>
+    sortBy: string,
+    setSortBy: Dispatch<SetStateAction<string>>
 }
 
 export const ExercisesContext = createContext<IExercisesContext>({
     plan: [],
     setPlan: () => { },
     saved: [],
-    setSaved: () => { }
+    setSaved: () => { },
+    sortBy: "",
+    setSortBy: () => { }
 })
 
 const ExercisesProvider = ({ children }: { children: ReactNode }) => {
     const [plan, setPlan] = useState<Exercise[]>([]);
     const [saved, setSaved] = useState<Exercise[]>([]);
+    const [sortBy, setSortBy] = useState<string>("duration");
     const sharedData = {
         plan,
         setPlan,
         saved,
-        setSaved
+        setSaved,
+        sortBy,
+        setSortBy
     }
     return (
         <div>
