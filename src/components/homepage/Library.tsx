@@ -1,6 +1,9 @@
 import { Exercise } from "@/type/Type";
 import Image from 'next/image';
 import Link from 'next/link';
+import { FaRegStar } from "react-icons/fa";
+import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { SlEnergy } from "react-icons/sl";
 
 const getExercises = async () => {
     const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
@@ -65,9 +68,12 @@ const Library = async () => {
                                 <div className="my-4 border-t border-[#25282e]" />
 
                                 <div className="flex items-center gap-4 text-[13px] text-secondary">
-                                    <span>◷ {exercise.duration} min</span>
-                                    <span>● {exercise.caloriesBurned} kcal</span>
-                                    <span>☆ {exercise.rating}</span>
+                                    <span className="flex items-center justify-center gap-1 " ><MdOutlineAccessTimeFilled className="text-primary mb-1" />
+                                        {exercise.duration} min</span>
+                                    <span className="flex items-center justify-center gap-1 "><SlEnergy className="text-primary mb-1" />
+                                        {exercise.caloriesBurned} kcal</span>
+                                    <span className="flex items-center justify-center gap-1 "><FaRegStar className="text-primary mb-1" />
+                                        {exercise.rating}</span>
                                 </div>
                             </div>
                         </Link>

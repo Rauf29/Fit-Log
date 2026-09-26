@@ -4,6 +4,9 @@ import { Exercise } from "@/type/Type";
 import Image from 'next/image';
 import Link from 'next/link';
 import { useContext } from "react";
+import { FaRegStar } from "react-icons/fa";
+import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { SlEnergy } from "react-icons/sl";
 import { toast } from "react-toastify";
 
 const Save = ({ exercises }: { exercises: Exercise[] }) => {
@@ -41,16 +44,16 @@ const Save = ({ exercises }: { exercises: Exercise[] }) => {
 
                             <div className="mt-1.5 flex items-center gap-3 text-[13px] text-secondary">
 
-                                <span className="text-primary">
-                                    ◷ {exercise.duration} min
+                                <span className="text-primary flex items-center justify-center gap-1">
+                                    <MdOutlineAccessTimeFilled className="text-primary mb-1" /> {exercise.duration} min
                                 </span>
 
-                                <span>
-                                    ● {exercise.caloriesBurned} kcal
+                                <span className="flex items-center justify-center gap-1">
+                                    <SlEnergy className="text-primary mb-1" /> {exercise.caloriesBurned} kcal
                                 </span>
 
-                                <span className="text-primary">
-                                    ☆ {exercise.rating}
+                                <span className="text-primary flex items-center justify-center gap-1">
+                                    <FaRegStar className="text-primary mb-1" /> {exercise.rating}
                                 </span>
 
                             </div>
